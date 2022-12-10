@@ -42,7 +42,13 @@ class UsersSvc
   static function readAll(?int $limit = null): array
   {
     $conn =  DB::connect();
-    $stmt = $conn->prepare("SELECT id, username, role, created, updated
+    $stmt = $conn->prepare("SELECT
+      id,
+      username,
+      role,
+      isDeleted,
+      created,
+      updated
     FROM users" . ($limit ? " LIMIT $limit" : ''));
     $stmt->execute();
     return $stmt->fetchAll();
