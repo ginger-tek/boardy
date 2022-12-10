@@ -16,7 +16,7 @@ if (@$_POST['title'] && @$_POST['tags']) {
     <input name="title" placeholder="Title" style="width:100%" required />
   </div>
   <div>
-    <textarea name="details" placeholder="Details (optional)" rows="10"></textarea>
+    <textarea name="details" placeholder="Details (optional)" rows="5"></textarea>
   </div>
   <div>
     <input name="tags" placeholder="Tags (comma-separated, min 1, max 5)" style="width:100%" required />
