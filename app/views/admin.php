@@ -9,7 +9,7 @@ use App\Svc\UsersSvc;
 
 if (@$_POST['action']) {
   $log = match ($_POST['action']) {
-    'purge-deleted' => JobsSvc::purgeDeleted(@$_GET['period']),
+    'purge-deleted' => JobsSvc::purgeDeleted(@$_POST['period']),
     'purge-abandoned' => JobsSvc::purgeAbandoned()
   };
 }
