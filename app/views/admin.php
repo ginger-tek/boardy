@@ -5,6 +5,7 @@ namespace App\Views;
 use App\Svc\JobsSvc;
 use App\Mod\TablesMod;
 use App\Svc\PostsSvc;
+use App\Svc\UsersSvc;
 
 if (@$_POST['action']) {
   $log = match ($_POST['action']) {
@@ -13,7 +14,7 @@ if (@$_POST['action']) {
   };
 }
 
-$fields = [
+$postsFields = [
   [
     'name' => 'title',
     'format' => fn ($r) => '<a href="?r=post&id=' . $r->id . '">' . $r->title . '</a>'
@@ -39,12 +40,31 @@ $fields = [
   'updated'
 ];
 
+$usersFields = [
+  [
+    'name' => 'username',
+    'format' => fn ($r) => '<a href="?r=user&id=' . $r->id . '">' . $r->username . '</a>'
+  ],
+  'role',
+  [
+    'name' => 'isDeleted',
+    'label' => 'Marked For Deletion',
+    'format' => fn ($r) => $r->isDeleted ? 'Yes' : 'No'
+  ],
+  'created',
+  'updated'
+];
+
 ?>
 
 <h2>Admin</h2>
 <section>
   <h3>Last 10 Posts</h3>
-  <?= TablesMod::render(PostsSvc::readAll(10), $fields) ?>
+  <?= TablesMod::render(PostsSvc::readAll(10), $postsFields) ?>
+</section>
+<section>
+  <h3>Users</h3>
+  <?= TablesMod::render(UsersSvc::readAll(), $usersFields) ?>
 </section>
 <section>
   <h3>Jobs</h3>
