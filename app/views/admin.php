@@ -81,5 +81,5 @@ $usersFields = [
     <button type="submit">Run</button>
   </form>
   <h4>Std Log</h4>
-  <textarea rows="10"><?= @$log ?></textarea>
+  <textarea rows="10" readonly><?= @$log ?></textarea>
 </section>
