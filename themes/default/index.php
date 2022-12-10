@@ -1,8 +1,15 @@
+<?php
+
+namespace App;
+
+use App\Config;
+
+?>
 <html>
 
 <head>
   <title>BB</title>
-  <link rel="stylesheet" href="/bb/themes/default/assets/css/styles.css" />
+  <link rel="stylesheet" href="<?= Config::$base ?>/themes/default/assets/css/styles.css" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 </head>
 
@@ -28,7 +35,7 @@
   <main>
     <?= $page ?>
   </main>
-  <script src="/bb/themes/default/assets/js/scripts.js"></script>
+  <script src="<?= Config::$base ?>/themes/default/assets/js/scripts.js"></script>
 </body>
 
 </html>

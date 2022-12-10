@@ -2,6 +2,7 @@
 
 namespace App\Mod;
 
+use App\Config;
 use App\Vendor\Parsedown;
 
 class CommentsMod
@@ -32,7 +33,7 @@ class CommentsMod
           $showDelete = $comment->author == $_SESSION['user']->id && !$comment->isDeleted;
           $showEdit = $showDelete;
           $detailsText = $comment->isDeleted ? '[deleted]' : (new Parsedown())->text($comment->details);
-          $link = ($_SERVER['HTTPS'] ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . '/bb?r=post&id=' . $comment->postId . '#c' . $comment->id;
+          $link = ($_SERVER['HTTPS'] ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . Config::$base . '?r=post&id=' . $comment->postId . '#c' . $comment->id;
           $children = render($comments, $comment->id);
           $str .= '<div class="comment" id="c' . $comment->id . '">
             <div class="body">

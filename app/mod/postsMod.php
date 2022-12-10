@@ -2,6 +2,7 @@
 
 namespace App\Mod;
 
+use App\Config;
 use App\Vendor\Parsedown;
 
 class PostsMod
@@ -26,7 +27,7 @@ class PostsMod
     $showDelete = $post->author == $_SESSION['user']->id && !$post->isDeleted;
     $showEdit = $showDelete;
     $detailsText = $post->isDeleted ? '[deleted]' : (new Parsedown())->text($post->details);
-    $link = ($_SERVER['HTTPS'] ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . '/bb?r=post&id=' . $post->id;
+    $link = ($_SERVER['HTTPS'] ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . Config::$base . '?r=post&id=' . $post->id;
     $str = '<div class="post" id="p' . $post->id . '">
       <h2 class="header">' . $post->title . '</h2>
       <div class="body">
