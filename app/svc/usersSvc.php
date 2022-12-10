@@ -39,6 +39,15 @@ class UsersSvc
     return $stmt->fetch();
   }
 
+  static function readAll(?int $limit = null): array
+  {
+    $conn =  DB::connect();
+    $stmt = $conn->prepare("SELECT id, username, role, created, updated
+    FROM users" . ($limit ? " LIMIT $limit" : ''));
+    $stmt->execute();
+    return $stmt->fetchAll();
+  }
+
   static function update(object $obj): bool
   {
     $conn = DB::connect();
