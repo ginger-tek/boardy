@@ -9,8 +9,13 @@ class JobsSvc
   static function purgeDeleted(?string $period = null): string
   {
     $std = [];
+    $std[] = date('Y-d-m H:i:s') . ': Purging posts/comments marked for deletion...';
+
     $date = new \DateTime();
-    if ($period) $date->sub(new \DateInterval($period));
+    if ($period) {
+      $date->sub(new \DateInterval($period));
+      $std[] = date('Y-d-m H:i:s') . ': Lookback period -> ' . $period;
+    }
 
     $conn = DB::connect();
 
@@ -28,6 +33,7 @@ class JobsSvc
   static function purgeAbandoned(): string
   {
     $std = [];
+    $std[] = date('Y-d-m H:i:s') . ': Purging abandoned comments with no parent comment...';
 
     $conn = DB::connect();
 
@@ -35,7 +41,7 @@ class JobsSvc
     WHERE parentId NOT IN (SELECT id FROM comments)
     AND parentID != 0");
     $stmt->execute();
-    $std[] = date('Y-d-m H:is') . ': Deleted ' . $stmt->rowCount() . ' abandoned entities';
+    $std[] = date('Y-d-m H:i:s') . ': Deleted ' . $stmt->rowCount() . ' abandoned comments';
 
     return join("\n", $std);
   }
