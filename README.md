@@ -1,4 +1,4 @@
-# bb
+# boardy
 
 Simple bulletin board site with posts, comments, and tags
 

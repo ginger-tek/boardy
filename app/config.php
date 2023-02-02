@@ -4,5 +4,5 @@ namespace App;
 
 class Config
 {
-  static public $base = '';
+  static public $base = '/boardy';
 }

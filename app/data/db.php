@@ -8,7 +8,7 @@ class DB
 {
   static function connect()
   {
-    $conn = new PDO('sqlite:app/data/bb.sqlite', null, null, [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ]);
+    $conn = new PDO('sqlite:app/data/boardy.sqlite', null, null, [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ]);
     $conn->exec("PRAGMA foreign_keys = ON");
     return $conn;
   }
